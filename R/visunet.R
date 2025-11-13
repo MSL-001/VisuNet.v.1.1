@@ -160,6 +160,8 @@ visunet = function(ruleSet, type ="RDF",  NodeColorType = "DL", NodeSizeMetric =
         sliderInput("accuracy", ("Min Accuracy"),
                     min = 0, max = 1, value = 0, step = 0.01),
         #Ida changed the min-value to 0 in VisuNet in order to make the changes in only Cytoscape instead
+                    #min = 0, max = 1, value = minAcc, step = 0.01),
+                    min = 0, max = 1, value = 0, step = 0.01), #Ida changed the min-value to 0 in VisuNet in order to make the changes in only Cytoscape instead
 
         uiOutput("FiltrParam"),
         uiOutput("value_slider"),
@@ -322,6 +324,7 @@ visunet = function(ruleSet, type ="RDF",  NodeColorType = "DL", NodeSizeMetric =
                   min = 0,
                   max = value_available_max,
                   value = 0,
+                  value = 0, #Ida changed to this
                   #value = value_available,
                   step = step)
     })

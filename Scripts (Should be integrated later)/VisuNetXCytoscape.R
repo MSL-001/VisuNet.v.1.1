@@ -4,7 +4,7 @@ if(!"RCy3" %in% installed.packages()){
     BiocManager::install("RCy3")
 }
 library(RCy3)
-load_all(path = "C:/Users/matti/Documents/GitHub/VisuNet.v.1.1")
+load_all(path = "C://Users//tilda//OneDrive//Dokument//Tillämpad bioinformatik//VisuNet.v.1.1")
 
 autconJohnson <- rosetta(autcon, roc = TRUE, clroc = "autism")
 rules <- autconJohnson$main
@@ -22,9 +22,11 @@ for (net_name in names(Autism_Visunet)) {
 
   style.name = paste(net_name, '_style')
   defaults <- list(NODE_SHAPE="circle")
+  nodeLabels <- mapVisualProperty('node label','label','p')
   nodeSize <- mapVisualProperty('node size','meanSupp','c',c(min(network$nodes$meanSupp),max(network$nodes$meanSupp)), c("30","75"))
   nodeFills <- mapVisualProperty('node fill color', 'color.background', 'p')
+  nodeBorderWidth <- mapVisualProperty('node border width', 'borderWidth', 'p')
   try(deleteVisualStyle(style.name), silent=TRUE)
-  createVisualStyle(style.name, defaults, list(nodeSize, nodeFills))
+  createVisualStyle(style.name, defaults, list(nodeSize, nodeFills, nodeLabels, nodeBorderWidth))
   setVisualStyle(style.name)
 }

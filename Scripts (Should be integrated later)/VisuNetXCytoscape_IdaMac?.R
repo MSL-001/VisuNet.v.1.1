@@ -52,11 +52,18 @@ for (net_name in names(Autism_Visunet)) {
   setVisualStyle(style.name)
 }
 
-## Slidern för Mean Accuracy, Support, Decision coverage
-source("~/Documents/GitHub/VisuNet.v.1.1/Scripts (Should be integrated later)/MeanSuppSlider.R")
-source("~/Documents/GitHub/VisuNet.v.1.1/Scripts (Should be integrated later)/MeanAccSlider.R")
-source("~/Documents/GitHub/VisuNet.v.1.1/Scripts (Should be integrated later)/meanDecisionCoverage.R")
+# Composite-filter som samlar alla tre i EN ruta
 net_suid <- getNetworkSuid(title = "all") #hittar SUID för nätverket som innehåller alla noder
-makeMeanAccuracySlider(network = net_suid) 
-makeMeanSupportSlider(network = net_suid) 
-makeMeanDecCoverageSlider(network = net_suid) 
+net_suid <- getNetworkSuid(title = "all")
+createCompositeFilter(
+  filter.name = "meanAcc + meanSupp + meanDecisionCoverage",
+  filter.list = c(
+    "meanAcc filter",
+    "Mean support filter",
+    "Mean decision coverage filter"
+  ),
+  type   = "ALL",    # ALL = AND, ANY = OR
+  hide   = FALSE,
+  network = net_suid,
+  apply  = FALSE     # bara skapa, inte köra direkt
+)
